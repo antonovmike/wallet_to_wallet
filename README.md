@@ -2,3 +2,7 @@
 Demo app for transfer from wallet to wallet via https://wallet.hiro.so
 
 ![Hiro docs](https://docs.hiro.so/get-started/transactions)
+
+```bash
+python3 -m pip install --upgrade pip
+```

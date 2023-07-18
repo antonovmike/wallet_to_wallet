@@ -2,6 +2,7 @@ import requests
 import json
 import hashlib
 import hmac
+import ecdsa
 
 # Authentication
 private_key = "qwerty"
@@ -15,6 +16,21 @@ amount = 100
 
 # Define an optional memo describing the transfer
 memo = "Transfer of 100 tokens to wallet abcd1234"
+
+
+def generate_signature(private_key, transaction_hash):
+    # Prepare the secp256k1 curve
+    curve = ecdsa.SECP256k1
+
+    # Load the origin's private key
+    sk = ecdsa.SigningKey.from_string(bytes.fromhex(private_key), curve=curve)
+
+    # Sign the transaction hash
+    signature = sk.sign(bytes.fromhex(transaction_hash))
+
+    # Return the generated signature
+    return signature.hex()
+
 
 def transfer(sender_wallet, receiver_wallet, amount, private_key):
     url = "https://wallet.hiro.so/api/v1/transactions"
