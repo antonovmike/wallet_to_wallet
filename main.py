@@ -18,7 +18,7 @@ amount = 100
 memo = "Transfer of 100 tokens to wallet abcd1234"
 
 
-def generate_signature(private_key, transaction_hash):
+def generate_signature(transaction_hash):
     # Prepare the secp256k1 curve
     curve = ecdsa.SECP256k1
 
@@ -32,7 +32,7 @@ def generate_signature(private_key, transaction_hash):
     return signature.hex()
 
 
-def transfer(sender_wallet, receiver_wallet, amount, private_key):
+def transfer(sender_wallet, receiver_wallet, amount):
     url = "https://wallet.hiro.so/api/v1/transactions"
     headers = {
         "Content-Type": "application/json",
