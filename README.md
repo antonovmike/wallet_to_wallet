@@ -6,10 +6,19 @@ Demo app for transfer from wallet to wallet via https://wallet.hiro.so
 Install and activate Python virtual environment:
 ```bash
 apt install python3.10-venv
+```
+```bash
 source venv/bin/activate
 ```
 Upgrade package installer for Python and install packages:
 ```bash
 python3 -m pip install --upgrade pip
+```
+```bash
 pip install ecdsa
+```
+
+Start with args
+```bash
+python3 main.py sender_wallet receiver_wallet
 ```

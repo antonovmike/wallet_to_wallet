@@ -1,3 +1,4 @@
+import sys
 import requests
 import json
 import hashlib
@@ -8,8 +9,8 @@ import ecdsa
 private_key = "qwerty"
 
 # Define the address of the wallet you want to send tokens to
-sender_wallet = "sender_wallet_address"
-receiver_wallet = "receiver_wallet_address"
+sender_wallet = sys.argv[1]
+receiver_wallet = sys.argv[2]
 
 # Define the amount of tokens you want to send
 amount = 100
