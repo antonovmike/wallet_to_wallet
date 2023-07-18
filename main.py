@@ -16,16 +16,18 @@ amount = 100
 # Define an optional memo describing the transfer
 memo = "Transfer of 100 tokens to wallet abcd1234"
 
-def transfer_funds(sender_wallet, receiver_wallet, amount, private_key):
+def transfer(sender_wallet, receiver_wallet, amount, private_key):
     url = "https://wallet.hiro.so/api/v1/transactions"
     headers = {
         "Content-Type": "application/json",
         "X-Hiro-Wallet-Application-Id": "YOUR_APP_ID",
         "X-Hiro-Wallet-Client-Id": "YOUR_CLIENT_ID"
     }
+    transaction_hash = "123"
     data = {
         "from_address": sender_wallet,
         "to_address": receiver_wallet,
+        "transaction_hash": transaction_hash,
         "amount": amount,
         "currency": "XRP",
         "fee": 0.000012,
@@ -39,7 +41,7 @@ def transfer_funds(sender_wallet, receiver_wallet, amount, private_key):
     return response.json()
 
 
-if transfer_funds(sender_wallet, receiver_wallet, amount, private_key):
+if transfer(sender_wallet, receiver_wallet, amount, private_key):
     print("Transfer successful!")
 else:
     print("Transfer failed")
