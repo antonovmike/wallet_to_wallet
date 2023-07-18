@@ -57,7 +57,7 @@ def transfer(sender_wallet, receiver_wallet, amount):
     return response.json()
 
 
-if transfer(sender_wallet, receiver_wallet, amount, private_key):
+if transfer(sender_wallet, receiver_wallet, amount):
     print("Transfer successful!")
 else:
     print("Transfer failed")
