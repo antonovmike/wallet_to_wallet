@@ -20,5 +20,6 @@ pip install ecdsa
 
 Start with args
 ```bash
-python3 main.py sender_wallet receiver_wallet
+source venv/bin/activate
+python3 main.py SENDER_WALLET RECEIVER_WALLET
 ```

@@ -16,7 +16,7 @@ receiver_wallet = sys.argv[2]
 amount = 100
 
 # Define an optional memo describing the transfer
-memo = "Transfer of 100 tokens to wallet abcd1234"
+memo = "Transfer of" + str(amount) + "tokens to wallet abcd1234"
 
 
 def generate_signature(transaction_hash):
