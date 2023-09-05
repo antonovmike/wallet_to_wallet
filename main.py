@@ -1,27 +1,37 @@
 import sys
 import ecdsa
 import requests
+import binascii
+import json
+import hashlib
 
 
 private_key = sys.argv[3]
 sender_wallet = sys.argv[1]
 receiver_wallet = sys.argv[2]
 url = "https://wallet.hiro.so/api/v1/transactions"
-transaction_hash = "123"
 
 # Define the amount of tokens you want to send
 amount = 100
 
 transaction_data = {
-    "from_address": sender_wallet,
-    "to_address": receiver_wallet,
-    "transaction_hash": transaction_hash,
-    "amount": amount,
-    "currency": "XRP",
-    "fee": 0.000012,
-    "nonce": 1,
-    "timestamp": 1626580000
+    "tx_type": "token_transfer",
+    "sender_address": sender_wallet,
+    "token_transfer": {
+        "recipient_address": receiver_wallet,
+        "amount": amount,
+        "memo": ""
+    },
+    "fee_rate": "180",
+    "sponsored": False,
+    "post_condition_mode": "deny",
+    "nonce": 1
 }
+
+serialized_tx = binascii.hexlify(json.dumps(transaction_data).encode()).decode()
+hash_object = hashlib.new('sha512_256')
+hash_object.update(serialized_tx.encode())
+transaction_hash = hash_object.hexdigest()
 
 # Define an optional memo describing the transfer
 memo = "Transfer of" + str(amount) + "tokens to wallet abcd1234"
@@ -41,7 +51,8 @@ def send_transaction():
         "X-Hiro-Wallet-Application-Id": "YOUR_APP_ID",
         "X-Hiro-Wallet-Client-Id": "YOUR_CLIENT_ID"
     }
-    response = requests.post(url, headers=headers, json=transaction_data)
+    # response = requests.post(url, headers=headers, json=transaction_data)
+    response = requests.post(url, headers=headers, data=serialized_tx)
     return response.json()
 
 
