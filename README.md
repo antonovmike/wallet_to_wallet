@@ -17,9 +17,11 @@ python3 -m pip install --upgrade pip
 ```bash
 pip install ecdsa
 ```
-
+```bash
+pip install blockstack-client
+```
 Start with args
 ```bash
 source venv/bin/activate
-python3 main.py SENDER_WALLET RECEIVER_WALLET
+python3 main.py SENDER_WALLET RECEIVER_WALLET PRIVATE_KEY
 ```
