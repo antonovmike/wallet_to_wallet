@@ -12,7 +12,7 @@ transaction_hash = "123"
 # Define the amount of tokens you want to send
 amount = 100
 
-transaction_hash_data = {
+transaction_data = {
     "from_address": sender_wallet,
     "to_address": receiver_wallet,
     "transaction_hash": transaction_hash,
@@ -33,7 +33,8 @@ def generate_signature():
     return signature
 
 
-def send_transaction(signature, transaction_data):
+def send_transaction():
+    signature = generate_signature()
     headers = {
         "Signature": signature,
         "Content-Type": "application/json",
