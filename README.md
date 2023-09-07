@@ -1,5 +1,5 @@
 # wallet_to_wallet
-Demo app for transfer from wallet to wallet via https://wallet.hiro.so
+Demo app for transfer from wallet to wallet via https://wallet.hiro.so now it's called https://leather.io/
 
 ![Hiro docs](https://docs.hiro.so/get-started/transactions)
 
